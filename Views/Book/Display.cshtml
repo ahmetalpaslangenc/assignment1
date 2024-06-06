@@ -1,0 +1,40 @@
+@model IEnumerable<BookApp.Models.Book>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Books</title>
+    <style>
+        .red { color: red; }
+        .yellow { color: yellow; }
+        .green { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Book List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Page Number</th>
+                <th>Due Date</th>
+                <th>Days Remaining</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Name</td>
+                    <td>@book.Author</td>
+                    <td>@book.PageNumber</td>
+                    <td>@book.DueDate.ToShortDateString()</td>
+                    <td class="@book.DueDateColor()">@book.DaysRemaining()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
